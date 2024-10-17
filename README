@@ -6,7 +6,8 @@
 |_______/ |______/   ______ |_______/ | _| `._____|
                     |______|                       
 
+A powerful AI tool for your database
 
+***
 
-from inside db_service
-docker run --env-file ./.env -p 8000:8000 db_service
+`yarn start:docker`
