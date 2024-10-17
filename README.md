@@ -1,3 +1,4 @@
+```
  _______  .______            _______  .______      
 |       \ |   _  \          |       \ |   _  \     
 |  .--.  ||  |_)  |         |  .--.  ||  |_)  |    
@@ -5,9 +6,11 @@
 |  '--'  ||  |_)  |         |  '--'  ||  |\  \----.
 |_______/ |______/   ______ |_______/ | _| `._____|
                     |______|                       
-
-A powerful AI tool for your database
+     A powerful AI tool for your database
+```
 
 ***
+
+&nbsp;
 
 `yarn start:docker`
