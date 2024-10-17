@@ -23,6 +23,7 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "lint": "eslint src/**/*.ts",
-    "lint:fix": "eslint src/**/*.ts --fix"
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "build": "tsc"
   }
 }

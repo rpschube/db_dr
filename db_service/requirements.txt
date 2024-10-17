@@ -1,0 +1,5 @@
+fastapi
+uvicorn[standard]
+vanna[chromadb,openai]
+pyodbc
+openai
