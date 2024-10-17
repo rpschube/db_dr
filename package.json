@@ -21,6 +21,8 @@
     "fastify": "^5.0.0"
   },
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix"
   }
 }

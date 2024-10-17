@@ -15,6 +15,7 @@ export default [
     rules: {
       ...tsPlugin.configs.recommended.rules,  // Load the recommended TypeScript rules
       "prettier/prettier": "error",
+      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }], // Ignore unused vars prefixed with _
     },
   },
 ];
