@@ -12,10 +12,13 @@ class MyVanna(ChromaDB_VectorStore, OpenAI_Chat):
 # Initialize FastAPI app
 app = FastAPI()
 
-# Initialize Vanna with your OpenAI API key and model
-vn = MyVanna(config={'api_key': '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', 'model': 'GPT-4o'})
+# Retrieve the API key from .env
+api_key = os.getenv('OPENAI_API_KEY')
 
-# Configure the SQL Server connection (replace with your actual connection details)
+# Initialize Vanna with your OpenAI API key and model
+vn = MyVanna(config={'api_key': api_key, 'model': 'GPT-4o'})
+
+# Configure the SQL Server connection (from .env)
 odbc_conn_str = (
     f"DRIVER={{ODBC Driver 17 for SQL Server}};"
     f"SERVER={os.getenv('SQL_SERVER')};"
@@ -31,6 +34,10 @@ vn.connect_to_mssql(odbc_conn_str=odbc_conn_str)
 @app.get("/")
 def read_root():
     return {"message": "Python microservice is running with Vanna"}
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
 
 @app.get("/info-schema")
 def get_info_schema():
