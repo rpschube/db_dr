@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app_service:
+    build: .  # Path to your Node.js Fastify app Dockerfile
+    ports:
+      - "3000:3000"  # Expose the port that Fastify listens on
+    depends_on:
+      - db_service
+    networks:
+      - app-network
+    environment:
+      - FASTIFY_API_URL=http://db_service:8000  # URL to access the FastAPI service
+
+  db_service:
+    build: ./db_service  # Path to your Python FastAPI app Dockerfile
+    ports:
+      - "8000:8000"
+    networks:
+      - app-network
+    env_file:
+      - ./db_service/.env  # Use your .env file for sensitive config
+
+networks:
+  app-network:
+    driver: bridge

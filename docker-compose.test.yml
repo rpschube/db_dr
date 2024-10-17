@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  app_service:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - FASTIFY_API_URL=http://db_service:8000
+    depends_on:
+      db_service:
+        condition: service_healthy  # This ensures app_service waits for db_service to be healthy
+    networks:
+      - app-network
+    command: yarn test  # Run tests inside the app_service
+
+  db_service:
+    build: ./db_service
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./db_service/.env
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+networks:
+  app-network:
+    driver: bridge
