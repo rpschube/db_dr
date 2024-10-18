@@ -4,18 +4,24 @@ import prettierPlugin from "eslint-plugin-prettier";
 
 export default [
   {
-    files: ["src/**/*.ts"],
+    files: ["*.ts", "src/**/*.ts"],  // Ensures all TypeScript files are included
     languageOptions: {
       parser: tsParser,
+      ecmaVersion: 2020,
+      sourceType: "module",  // ES modules
+    },
+    env: {
+      node: true,  // Enable Node.js global variables and scope
+      es2021: true,  // ES6+ features
     },
     plugins: {
-      "@typescript-eslint": tsPlugin,  // Explicitly define the TypeScript plugin
+      "@typescript-eslint": tsPlugin,
       prettier: prettierPlugin,
     },
     rules: {
-      ...tsPlugin.configs.recommended.rules,  // Load the recommended TypeScript rules
+      ...tsPlugin.configs.recommended.rules,
       "prettier/prettier": "error",
-      "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }], // Ignore unused vars prefixed with _
+      "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
     },
   },
 ];
